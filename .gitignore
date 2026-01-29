@@ -1,0 +1,48 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Python dependencies
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Production builds
+dist/
+build/
+.next/
+out/
+
+# Environment variables (CRITICAL)
+**/.env
+**/.env.local
+**/.env.*.local
+**/*.env
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+logs
+*.log
+
+# Project specific
+.gemini/
+brain/
+Interview_Explanation.txt
+report.txt
+implementation_plan.md
+walkthrough.md
+task.md
