@@ -23,10 +23,9 @@ function Register() {
         `${Backend_uri}auth/register`,
         userData,
       );
-      console.log(Registration);
       navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

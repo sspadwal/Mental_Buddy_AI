@@ -25,7 +25,6 @@ function Login() {
         `${Backend_uri}auth/login`,
         data,
       );
-      console.log(userLoginResponse);
       authLogin(userLoginResponse.data.message, userLoginResponse.data.user);
 
       const role = userLoginResponse.data.user.role;
@@ -40,7 +39,7 @@ function Login() {
         error.response?.data?.message ||
         "Something went wrong. Please try again.";
       setApiError(errorMessage);
-      console.log("Login Error:", errorMessage);
+      console.error("Login Error:", errorMessage);
     }
   };
 

@@ -4,7 +4,6 @@ import axios from 'axios'
 const getDepartmentAnalytics = async (req, res) => {
     try {
         const dept = req.user.department;
-        console.log(dept)
         // 1. Get the TRUE total count for the manager to see (Scale)
         const true_total = await Mood.countDocuments({
             department: dept,

@@ -65,11 +65,10 @@ async def demo(data: FeedbackRequest):
                 response_mime_type="application/json"
             )
         )
-        print("Try Block")
-        print(response.text)
         return {"message": response.text}
     except Exception as e:
-        print(e)
+        import logging
+        logging.error(e)
 
 
 class SummaryRequest(BaseModel):
@@ -107,9 +106,13 @@ async def analyticsSummary(data: SummaryRequest):
                 response_mime_type="application/json"
             )
         )
-        print("Try Block")
-        print(response.text)
         return {"message": response.text}
     except Exception as e:
-        print(e)
+        import logging
+        logging.error(e)
         return {"error": str(e)}
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port)

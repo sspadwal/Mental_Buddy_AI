@@ -12,7 +12,7 @@ dotenv.config()
 const app = express()
 // to parse the json Data this is the middleware we used.
 const corsOptions = {
-    origin: 'http://localhost:5173', // Allow only requests from this origin
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Allow requests from production or local dev
     methods: 'GET,POST', // Allow only these methods
     allowedHeaders: ['Content-Type', 'Authorization'] // Allow only these headers
 };

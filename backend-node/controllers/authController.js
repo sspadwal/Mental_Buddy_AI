@@ -16,7 +16,7 @@ const register = async (req, res) => {
             return res.status(400).json({ message: "User Already Exists" })
         }
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 
 }
@@ -36,7 +36,6 @@ const login = async (req, res) => {
                     username: findUser.username
                 }
                 const token = jwt.sign(payload, process.env.MY_SECRET, { expiresIn: '24h' })
-                console.log(token)
                 return res.status(200).json({ message: token, role: findUser.role, user: payload })
 
             } else {
@@ -48,7 +47,7 @@ const login = async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error.message)
+        console.error(error.message)
     }
 }
 

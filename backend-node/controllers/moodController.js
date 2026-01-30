@@ -3,7 +3,6 @@ import axios from 'axios';
 const createMood = async (req, res) => {
     // here we are getting the data from the requst body
     const { entry_text, department } = req.body
-    console.log("department", department)
     try {
         // calling the ai server 
         const ai_response = await axios.post(`${process.env.AI_ENGINE_URL}/analyze`, { text: entry_text })
@@ -21,7 +20,7 @@ const createMood = async (req, res) => {
         return res.status(201).json({ message: "Mood Saved.", data: newEntry, feedback: employee_feedback })
     } catch (error) {
         // sending the error response to the client
-        console.log(error)
+        console.error(error)
         return res.status(400).json({ message: "AI analysis Failed. Please try again later" })
     }
 }

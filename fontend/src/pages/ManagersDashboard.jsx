@@ -54,7 +54,6 @@ const ManagersDashboard = () => {
         `${Backend_uri}mood/analytics/${user.department}`,
         { headers: { Authorization: security_Header } },
       );
-      console.log(managerData);
       setAnalytics(managerData.data.stats);
       setRawData(managerData.data.data);
     } catch (err) {
@@ -152,7 +151,6 @@ const ManagersDashboard = () => {
         {},
         { headers: { Authorization: security_Header } },
       );
-      console.log(final_summary);
       setSummary(final_summary.data.summaryText);
       // Refresh analytics and history after generation
       userHandling();
@@ -173,9 +171,8 @@ const ManagersDashboard = () => {
         { headers: { Authorization: security_Header } },
       );
       sethistory(Summary_history.data.data);
-      console.log(history);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
   useEffect(() => {

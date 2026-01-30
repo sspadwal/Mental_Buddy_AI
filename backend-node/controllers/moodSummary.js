@@ -8,7 +8,6 @@ const moodSummary = async (req, res) => {
         const { department, org_id } = req.user
 
         const entries = await Mood.find({ department, org_id, isSummarized: false }).sort({ createdAt: -1 });
-        console.log(entries.length)
         if (entries.length >= 15) {
             const bundle = entries.map((item) => item.entry_text).join(" | ");
 
@@ -27,7 +26,7 @@ const moodSummary = async (req, res) => {
                 // console.log("summary_data : " , summary_data)
 
             } catch (aiError) {
-                console.log("AI Server Error:", aiError.message);
+                console.error("AI Server Error:", aiError.message);
                 summary_data = { summary: "Analysis temporarily unavailable due to server load." };
             }
         }
