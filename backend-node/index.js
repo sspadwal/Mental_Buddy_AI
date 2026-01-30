@@ -20,7 +20,7 @@ app.use(express.json());
 
 // CORS configuration (Vercel + Render safe)
 const allowedOrigins = [
-  "https://mentalbuddyai.vercel.app",
+  "https://mindbuddyai.vercel.app",
   "https://mental-buddy-ai-backend.onrender.com",
 ];
 
