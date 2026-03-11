@@ -69,6 +69,7 @@ async def demo(data: FeedbackRequest):
     except Exception as e:
         import logging
         logging.error(e)
+        return {"error": str(e), "message": "AI analysis failed due to an internal error."}
 
 
 class SummaryRequest(BaseModel):
