@@ -12,7 +12,9 @@ const moodSummary = async (req, res) => {
             const bundle = entries.map((item) => item.entry_text).join(" | ");
 
             try {
-                const summaryResponse = await axios.post(`${process.env.AI_ENGINE_URL}/summarize`, { bundle: bundle });
+                // Normalize the AI_ENGINE_URL to prevent double slashes (e.g., //summarize)
+                const aiBaseUrl = process.env.AI_ENGINE_URL.replace(/\/+$/, '');
+                const summaryResponse = await axios.post(`${aiBaseUrl}/summarize`, { bundle: bundle });
                 // Robust parsing check
                 // console.log("summaryResponse : ", summaryResponse.data.message)
                 summary_data = typeof summaryResponse.data.message === 'string'

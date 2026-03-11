@@ -4,8 +4,10 @@ const createMood = async (req, res) => {
     // here we are getting the data from the requst body
     const { entry_text, department } = req.body
     try {
+        // Normalize the AI_ENGINE_URL to prevent double slashes (e.g., //analyze)
+        const aiBaseUrl = process.env.AI_ENGINE_URL.replace(/\/+$/, '');
         // calling the ai server 
-        const ai_response = await axios.post(`${process.env.AI_ENGINE_URL}/analyze`, { text: entry_text })
+        const ai_response = await axios.post(`${aiBaseUrl}/analyze`, { text: entry_text })
         
         // const aiData = JSON.parse(ai_response.data.message)
         const aiData = ai_response.data.message;
