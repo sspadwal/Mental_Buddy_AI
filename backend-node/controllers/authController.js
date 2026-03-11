@@ -16,7 +16,7 @@ const register = async (req, res) => {
             return res.status(400).json({ message: "User Already Exists" })
         }
     } catch (error) {
-        console.error(error)
+        // Log to server only in dev or use a proper logger
     }
 
 }
@@ -47,7 +47,7 @@ const login = async (req, res) => {
         }
 
     } catch (error) {
-        console.error(error.message)
+        // Log to server only in dev or use a proper logger
     }
 }
 

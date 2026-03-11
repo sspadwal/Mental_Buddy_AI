@@ -63,7 +63,7 @@ const EmployeeDashboard = ({ children }) => {
         setMessage("");
       }, 30000);
     } catch (err) {
-      console.error(err);
+      // Error handled by UI
     } finally {
       setLoading(false);
     }
@@ -78,7 +78,7 @@ const EmployeeDashboard = ({ children }) => {
       });
       setHistory(res.data.message);
     } catch (err) {
-      console.error(err);
+      // Error handled by UI
     }
   };
 

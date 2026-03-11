@@ -24,23 +24,6 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  //   useEffect(() => {
-  //     const savedUserData = localStorage.getItem("userdata");
-  //     // console.log(savedUserData)
-  //     try {
-  //       if (savedUserData) {
-  //         const userData = JSON.parse(savedUserData);
-  //         if (userData) {
-  //           setUser(userData);
-  //         }
-  //       }
-  //     } catch (e) {
-  //       console.log(e);
-  //       localStorage.removeItem("userdata");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }, []);
 
   return (
     <authContext.Provider value={{ loading, user, Login, Logout }}>

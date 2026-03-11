@@ -15,27 +15,27 @@ const moodSummary = async (req, res) => {
                 // Normalize the AI_ENGINE_URL to prevent double slashes (e.g., //summarize)
                 const aiBaseUrl = process.env.AI_ENGINE_URL.replace(/\/+$/, '');
                 const summaryResponse = await axios.post(`${aiBaseUrl}/summarize`, { bundle: bundle });
-                // Robust parsing check
-                // console.log("summaryResponse : ", summaryResponse.data.message)
+                
                 summary_data = typeof summaryResponse.data.message === 'string'
                     ? JSON.parse(summaryResponse.data.message)
                     : summaryResponse.data.message;
-                const newSummary =await new Summary({summaryText:summary_data.summary,department,org_id,batch_size:entries.length})
+
+                const newSummary = new Summary({ summaryText: summary_data.summary, department, org_id, batch_size: entries.length })
                 await newSummary.save();
-                const all_id= entries.map((mood)=>mood._id)
-            
-                await Mood.updateMany({_id:{$in:all_id}},{$set:{isSummarized:true}})
-                // console.log("summary_data : " , summary_data)
+
+                const all_id = entries.map((mood) => mood._id)
+                await Mood.updateMany({ _id: { $in: all_id } }, { $set: { isSummarized: true } })
+
+                return res.status(200).json(newSummary)
 
             } catch (aiError) {
-                console.error("AI Server Error:", aiError.message);
-                summary_data = { summary: "Analysis temporarily unavailable due to server load." };
+                // Fallback if AI fails
+                return res.status(500).json({ message: "Analysis temporarily unavailable due to server load.", error: aiError.message });
             }
         }
-        else{
-            return res.status(200).json({message:`Not enough data yet. You need 15 queries, but only have ${entries.length}`})
+        else {
+            return res.status(200).json({ message: `Not enough data yet. You need 15 queries, but only have ${entries.length}` })
         }
-        res.status(200).json(newSummary)
 
 
     }

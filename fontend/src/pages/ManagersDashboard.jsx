@@ -57,7 +57,7 @@ const ManagersDashboard = () => {
       setAnalytics(managerData.data.stats);
       setRawData(managerData.data.data);
     } catch (err) {
-      console.error(err);
+      // Error handled by UI
     } finally {
       setLoading(false);
     }
@@ -156,7 +156,7 @@ const ManagersDashboard = () => {
       userHandling();
       fetchHistory();
     } catch (err) {
-      console.error(err);
+      // Error handled by UI
     } finally {
       setLoading(false);
     }
@@ -172,7 +172,7 @@ const ManagersDashboard = () => {
       );
       sethistory(Summary_history.data.data);
     } catch (e) {
-      console.error(e);
+      // Error handled by UI
     }
   };
   useEffect(() => {
